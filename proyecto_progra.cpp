@@ -55,30 +55,42 @@ void ventas() {
     
 }
 void altas(){
-    int i;
-    string prod_temp;
-    i = totalprod;
+     string Prod_temp;
+    int i,indice,opcion;
     while(true){
-        cout << "producto:";
-        cin >> prod_temp;
-        if (prod_temp == "*")
+        i=totalprod;
+        cout<<"Producto: ";
+        cin>>Prod_temp;
+        if(Prod_temp == "*"){
             break;
-
-        producto[i] = prod_temp;
-        cout << "ID:";
-        cin >> id[i];
-        cout << "precio de compra:";
-        cin >> pc[i];
-        cout << "precio de venta:";
-        cin >> pv[i];
-        cout << "existencias:";
-        cin >> existencias[i];
-        cout << "nivel de reorden:";
-        cin >> nr[i];
-        st[i] = 1;
-        i++;
+        }
+        indice = Buscar(Prod_temp);
+        if(indice == -1){
+        producto[i] = Prod_temp;
+        cout<<"Id: ";
+        cin>>id[i];
+        cout<<"Precio de compra: ";
+        cin>>pc[i];
+        cout<<"Precio de venta: ";
+        cin>>pv[i];
+        cout<<"Existencias: ";
+        cin>>existencias[i];
+        cout<<"nivel de reorden: ";
+        cin>>nr[i];
+        st[i]=1;
+        totalprod++;
+        }else
+            if(st[indice]==0){
+            cout<<"El producto ya existe pero dado de baja,Desea darlo de alta? (1=Si,0=No)"<<endl;
+            cin>>opcion;
+                if(opcion==1){
+                    st[i]=1;
+                    cout<<"Producto dado de alta"<<endl;
+                }else;
+        }else{
+            cout<<"Producto Ya existente"<<endl;
+        }
     }
-    totalprod = i;
 }
 void consultas(){
     string prod_temp;
@@ -97,11 +109,36 @@ void consultas(){
             cout << "producto no existente";
         else { 
             cout << setw(10) << id[i] << setw(10) << producto[i] << setw(10)
+            }
         }
     }
 }
+
 void mostrar_inventario(){
     int i;
     for(i=0; i<totalprod;i++)
     cout << setw(10) << id[i] << setw(10) << producto[i] << setw(10)
+}
+
+void Bajas(){
+    string Prod_temp;
+    int i,indice;
+    while(true){
+        i=0;
+        cout<<"Producto: ";
+        cin>>Prod_temp;
+        if(Prod_temp == "*"){
+            break;
+        }
+        indice=Buscar(Prod_temp);
+        if(indice==-1){
+            cout<<"Producto no encontrado"<<endl;
+        }else
+            if(st[indice]==0){
+                cout<<"El producto ya esta  dado de baja"<<endl;
+        }else{
+            st[indice] = 0;
+            cout<<"Producto dado de baja"<<endl;
+        }
+    }
 }
