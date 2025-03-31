@@ -2,22 +2,77 @@
 #include <iomanip>
 
 using namespace std;
-void consultas();
-void mostrar_inventario();
-void administrador();
+
+void admin();
 void ventas();
+void ticket();
+void corte_caja();
+void mostrar_Inventario();
 void altas();
-int id[100] = {2, 4, 1, 3, 5};
-string producto[100] ={"leche", "pan", "agua", "huevo", "refresco"};
-float pc[100] = {12, 35, 5.5, 13.39, 22.4, 10.99};//precio de compra
-float pv[100] = {15.5, 7.95, 18.95, 30.39, 14.55};//precio de venta
-int existencias[100] = {16, 18, 12, 20, 30};
-int nr[100] = {5, 6, 4, 7, 8};//numero de reorden
-int st[100] = {1, 1, 1, 1, 1};//estatus
-int total_prod = 5;
+void bajas();
+void consultas();
+void modificaciones();
+int id[10] = {2,4,1,3,5};
+string producto[10] = {"leche", "pan", "agua", "huevos", "refresco"};
+string reo[10] = {5,6,4,7,8};//reorden
+float pc[10] = {12.35,5.5,13.39,22.4,10.99};//precio de compra
+float pv[10] = {15.5,7.95,18.55,30.39,14.75};//precio de venta
+int Existencias[10] = {16,18,12,5,5};
+int stat[10] = {1,1,1,1,1};//es el estatus
+int loginadmin();
+string usuarios[10]={"admin", "ventas1", "ventas2"};
+int pass[10]={123,123,123};
+int tipo[10]={1,2,3};
+int st[10]={1,1,1};
+int total_users=3;
+
+int loginadmin() {
+    string usuario_temp;
+    int contra_temp;
+    int i = 0; 
+    cout << "usuario: ";
+    cin >> usuario_temp;
+
+    while(i < total_users && usuario_temp != usuarios[i]) {
+        i++;
+    }
+    if(i < total_users && usuario_temp == usuarios[i]) {
+        cout << "contraseña: ";
+        cin >> contra_temp;
+
+        if(pass_temp == pass[i]) {
+            return 1; 
+        } else {
+            cout << "datos invalidos" << endl;
+            return 0;
+        }
+    } else {
+        cout << "Usuario no válido" << endl;
+        return 0;
+    }
+}
 
 int main() {
     int opcion;
+    do {
+        cout << "menu principal" << endl;
+        cout << "1. administrador" << endl;
+        cout << "2. ventas" << endl;
+        cout << "3. salir" << endl;
+        cout << " opcion: " << endl;
+        cin >> opcion;
+        switch (opcion) {
+            case 1: administrador();
+                    break;
+            case 2: ventas();
+                    break;
+            default: cout << "datos incorrectos" << endl;
+        }
+    } while(opcion != 2);
+    return 0;
+}
+
+void Administrador() int opcion;
     do{
         cout <<"menu principal" << endl;
         cout <<"1. administrador" << end;
@@ -27,12 +82,10 @@ int main() {
         cin >>opcion;
         switch (opcion){
             case 1: cout << "altas" endl;
-                    altas();
                 break;
             case 2: cout << "bajas" endl;
                 break;
             case 3: cout << "consultas" << endl;
-                    consultas();
                 break;
             case 4: cout << "modificaciones" << endl;
                 break;
@@ -49,59 +102,29 @@ int main() {
             }
     }while (opcion != 8);
 }
-
 void ventas() {
-    cout <<"este menu es de ventas" << endl;
-    
 }
-void altas(){
-    int i;
-    string prod_temp;
-    i = totalprod;
-    while(true){
-        cout << "producto:";
-        cin >> prod_temp;
-        if (prod_temp == "*")
-            break;
 
-        producto[i] = prod_temp;
-        cout << "ID:";
-        cin >> id[i];
-        cout << "precio de compra:";
-        cin >> pc[i];
-        cout << "precio de venta:";
-        cin >> pv[i];
-        cout << "existencias:";
-        cin >> existencias[i];
-        cout << "nivel de reorden:";
-        cin >> nr[i];
-        st[i] = 1;
-        i++;
+void ticket() {
+}
+
+void corte() {
+}
+
+void altas() {
+}
+
+void Bajas() {
+  
+}
+
+void Consultas() {
+}
+
+void Modificaciones() {
+}
+
+
+void Mostrar_Inventario() {
     }
-    totalprod = i;
-}
-void consultas(){
-    string prod_temp;
-    int i;
-    int indice;
-    i = totalprod;
-    while(true){
-        i=0;
-        cout << "producto:";
-        cin >> prod_temp;
-        if (prod_temp == "*")
-            break;
-        while (i < totalprod && prod_temp != producto[i]) {
-            i++;
-        if (i == totalprod)
-            cout << "producto no existente";
-        else { 
-            cout << setw(10) << id[i] << setw(10) << producto[i] << setw(10)
-        }
-    }
-}
-void mostrar_inventario(){
-    int i;
-    for(i=0; i<totalprod;i++)
-    cout << setw(10) << id[i] << setw(10) << producto[i] << setw(10)
-}
+   
