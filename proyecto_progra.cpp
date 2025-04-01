@@ -766,18 +766,3 @@ void ventas(){
             }
     }
 }
-
-
-void Mostrar_Inventario() {
-    int indices_reorden[Contador_productos], c = 0;
-    cout << setw(5) << "Id" << setw(10) << "Producto" << setw(10) << "Pc" << setw(10)  << "Pv" << setw(15) << "Existencias" << setw(10) << "Reorden" << setw(10) << "Status" << setw(10) << endl;
-    for(int i = 0; i < Contador_productos; i++) {
-        if (Status[i] == 1) {
-            cout << setw(5) << Id[i] << setw(10) << Producto[i] << setw(10) << Pc[i] << setw(10) << Pv[i] << setw(15) << Existencias[i] << setw(10) << Reorden[i] << setw(10) << Status[i] << setw(10) << endl;
-        }
-        if (Existencias[i] < Reorden[i]) {
-            indices_reorden[c] = i;
-            c++;
-        }
-    }
-   
